@@ -128,10 +128,10 @@
     <a class="active item">Home</a>
     <div class="right menu">
       <div class="item">
-        <a class="ui button" href="/login">Log in</a>
+        <a class="ui button" href="<?php echo baseUrl() ?>/login">Log in</a>
       </div>
       <div class="item">
-        <a class="ui primary button">Sign Up</a>
+        <a class="ui primary button" href="<?php echo baseUrl() ?>/signup">Sign Up</a>
       </div>
     </div>
   </div>
@@ -140,8 +140,8 @@
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
   <a class="active item">Home</a>
-  <a class="item" href="/login">Login</a>
-  <a class="item">Signup</a>
+  <a class="item" href="<?php echo baseUrl() ?>/login">Login</a>
+  <a class="item" href="<?php echo baseUrl() ?>/signup">Signup</a>
 </div>
 
 
@@ -156,8 +156,8 @@
         </a>
         <a class="active item">Home</a>
         <div class="right item">
-          <a class="ui inverted button" href="/login">Log in</a>
-          <a class="ui inverted button">Sign Up</a>
+          <a class="ui inverted button" href="<?php echo baseUrl() ?>/login">Log in</a>
+          <a class="ui inverted button" href="<?php echo baseUrl() ?>/signup">Sign Up</a>
         </div>
       </div>
     </div>
@@ -167,7 +167,7 @@
         PHP Chat
       </h1>
       <h2>An experimental chat made with vanilla PHP.</h2><br>
-      <div class="ui huge primary button">Try it now&nbsp;&nbsp;&nbsp;&nbsp;<i class="comments icon"></i></div>
+        <a href="<?php echo baseUrl() ?>/signup"><div class="ui huge primary button">Try it now&nbsp;&nbsp;&nbsp;&nbsp;<i class="comments icon"></i></div></a>
     </div>
 
   </div>

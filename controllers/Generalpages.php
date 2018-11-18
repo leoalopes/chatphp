@@ -1,6 +1,6 @@
 <?php
 
-class Pages {
+class Generalpages {
     
     function __construct() {
         
@@ -11,7 +11,7 @@ class Pages {
     }
     
     function notfound() {
-        require_once(__DIR__.'/../view/notfound.php');
+        require_once(__DIR__.'/../views/notfound.php');
     }
 }
 
