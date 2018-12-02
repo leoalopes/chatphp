@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>Login - PHPChat</title>
+  <title>Signup - PHPChat</title>
   <link rel="stylesheet" type="text/css" href="assets/semantic/semantic.min.css">
   <style type="text/css">
     body {
@@ -62,12 +62,25 @@
                   prompt : 'Your password must be at least 6 characters'
                 }
               ]
+            },
+            password_verify: {
+              identifier  : 'password-verify',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please verify your password'
+                },
+                {
+                  type   : 'match[password]',
+                  prompt : 'The passwords must be equal'
+                }
+              ]
             }
           },
           onSuccess : (e) => {
             e.preventDefault();
             $.ajax({
-              url: '<?php echo baseUrl() ?>/submitLogin',
+              url: '<?php echo baseUrl() ?>/submitSignup',
               method: 'POST',
               data: {
                 email: $("#email").val(),
@@ -92,11 +105,17 @@
   <div class="column">
     <h1 class="ui teal header">
       <div class="content" style="color: white">
-        Log-in to your account
+        Create your account
       </div>
     </h1>
-    <form class="ui large form" id="formLogin">
+    <form class="ui large form" id="formSignup">
       <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="name" id="name" placeholder="Name">
+          </div>
+        </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="envelope icon"></i>
@@ -109,7 +128,13 @@
             <input type="password" name="password" id="password" placeholder="Password">
           </div>
         </div>
-        <div class="ui fluid large teal submit button" style="background-color: #2185d0">Login</div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password-verify" id="password-verify" placeholder="Password verify">
+          </div>
+        </div>
+        <div class="ui fluid large teal submit button" style="background-color: #2185d0">Signup</div>
       </div>
 
       <div class="ui error message"></div>
@@ -117,7 +142,7 @@
     </form>
 
     <div class="ui message">
-      Not registered yet?  <a href="<?php echo baseUrl() ?>/signup">Sign Up</a>
+      Already have an account?  <a href="<?php echo baseUrl() ?>/login">Login</a>
     </div>
   </div>
 </div>

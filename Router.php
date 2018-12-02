@@ -2,6 +2,7 @@
 
 include_once('controllers/Generalpages.php');
 include_once('controllers/Account.php');
+include_once('controllers/Logged.php');
 
 class Router {
     public $route = [];
@@ -65,6 +66,11 @@ class Router {
     private function signup() {
         $controller = new Account();
         $controller->signup();
+    }
+    
+    private function panel() {
+        $controller = new Logged();
+        $controller->panel();
     }
     
     private function notFound() {
