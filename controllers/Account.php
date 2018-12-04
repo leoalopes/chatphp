@@ -1,17 +1,29 @@
 <?php
 
+include_once('models/User.php');
+
 class Account {
     
-    function __construct() {
-        
+    private $user_model;
+
+    public function __construct() {
+        $this->user_model = new User();
     }
     
     function submitLogin() {
-        header('location: '.baseUrl().'/home');
+        $data = $_POST;
+        if(!isset($data['name']) || !isset($data['password']))
+            die(json_encode(['error'=>'Missing data.']));
+        $response = $this->user_model->login($data);
+        die(json_encode($response));
     }
     
     function submitSignup() {
-        header('location: '.baseUrl().'/home');
+        $data = $_POST;
+        if(!isset($data['name']) || !isset($data['password']))
+            die(json_encode(['error'=>'Missing data.']));
+        $response = $this->user_model->register($data);
+        die(json_encode($response));
     }
     
     function login() {

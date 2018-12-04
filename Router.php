@@ -45,17 +45,21 @@ class Router {
     }
     
     private function home() {
+        if(isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/panel');
         $controller = new Generalpages();
         $controller->home();
     }
     
     private function login() {
+        if(isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/panel');
         $controller = new Account();
         $controller->login();
     }
     
     private function submitLogin() {
-        if($_SERVER['REQUEST_METHOD'] != 'POST')
+        if($_SERVER['REQUEST_METHOD'] != 'POST' && !isset($_SESSION['logged']))
             header('location: '.baseUrl().'/login');
         else {
             $controller = new Account();
@@ -64,11 +68,24 @@ class Router {
     }
     
     private function signup() {
+        if(isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/panel');
         $controller = new Account();
         $controller->signup();
     }
+
+    private function submitSignup() {
+        if($_SERVER['REQUEST_METHOD'] != 'POST' && !isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/signup');
+        else {
+            $controller = new Account();
+            $controller->submitSignup();
+        }
+    }
     
     private function panel() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
         $controller = new Logged();
         $controller->panel();
     }

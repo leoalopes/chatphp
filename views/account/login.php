@@ -28,6 +28,15 @@
     input::placeholder {
       color: #888888 !important;      
     }
+    .modal {
+      width: 40% !important;
+      height: 30% !important;
+    }
+    .content {
+      text-align: center;
+      font-size: 18px !important;
+      line-height: 55px !important;
+    }
   </style>
   <script src="assets/jquery/jquery.min.js"></script>
   <script src="assets/semantic/semantic.min.js"></script>
@@ -37,16 +46,16 @@
       $('.ui.form')
         .form({
           fields: {
-            email: {
-              identifier  : 'email',
+            name: {
+              identifier  : 'name',
               rules: [
                 {
                   type   : 'empty',
-                  prompt : 'Please enter your e-mail'
+                  prompt : 'Please enter your nickname'
                 },
                 {
-                  type   : 'email',
-                  prompt : 'Please enter a valid e-mail'
+                  type   : 'length[6]',
+                  prompt : 'Your nickname must be at least 6 characters'
                 }
               ]
             },
@@ -70,15 +79,19 @@
               url: '<?php echo baseUrl() ?>/submitLogin',
               method: 'POST',
               data: {
-                email: $("#email").val(),
+                name: $("#name").val(),
                 password: $("#password").val()
+              },
+              success: function(response) {
+                window.location.href = '<?php echo baseUrl().'/panel' ?>';
+              },
+              error: function(error) {
+                $("#error").text(JSON.parse(error.responseText).error);
+                $('.ui.modal')
+                  .modal('show')
+                ;
               }
             })
-            .done(function(response) {
-            })
-            .fail(function(error) {
-              console.log(error);
-            });
           }
         })
       ;
@@ -87,6 +100,11 @@
   </script>
 </head>
 <body>
+
+<div class="ui modal">
+  <div class="header"><strong>Error</strong></div>
+  <div class="content" id="error"></div>
+</div>
 
 <div class="ui middle aligned center aligned grid">
   <div class="column">
@@ -99,8 +117,8 @@
       <div class="ui stacked segment">
         <div class="field">
           <div class="ui left icon input">
-            <i class="envelope icon"></i>
-            <input type="text" name="email" id="email" placeholder="E-mail address">
+            <i class="user icon"></i>
+            <input type="text" name="name" id="name" placeholder="Nickname">
           </div>
         </div>
         <div class="field">
