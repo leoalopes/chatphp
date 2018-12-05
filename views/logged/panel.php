@@ -77,12 +77,12 @@
   <div class="ui main container">
     <div class="main-title">
       <h2 class="ui red header main-title">This is your main panel</h2>
-      <p>Here you can access your groups and individual messages, as well as start a new conversation.</p>
+      <p>Here you can access your individual messages, as well as start a new conversation.</p>
     </div>
     <h4 class="ui horizontal divider header main-divider">
       &nbsp;&nbsp;&nbsp;&nbsp;<i class="check red icon"></i>
     </h4>
-    <div class="ui stackable three column grid">
+    <div class="ui stackable three column centered grid">
       <div class="column">
         <div class="ui container segment">
           <h2 class="ui green header section-header">Messages</h2>
@@ -101,24 +101,6 @@
             </h4>
             <div id="online-users">
             </div>
-          </div>
-        </div>
-      <div class="column">
-        <div class="ui container segment">
-          <h2 class="ui orange header section-header">Groups</h2>
-          <h4 class="ui horizontal divider header">
-          &nbsp;&nbsp;&nbsp;&nbsp;<i class="orange users icon" style="color: #21ba45"></i>
-          </h4>
-          <div id="groups">
-          </div>
-          <script>
-            var messages;
-            if(!messages) {
-              document.write('<div class="not-found">No groups yet.</div>');
-            } else {
-
-            }
-          </script>
           </div>
         </div>
       </div>
@@ -187,7 +169,7 @@
         } else {
           online.map(function(person) {
             newHtml += `
-              <div class="ui icon message">
+              <div class="ui icon message message-container" onclick="setReceiver(`+person.id+`)"">
                 <img class="ui avatar image" src="`+(person.image && person.image != "" ? person.image : "https://i.imgur.com/jNNT4LE.jpg")+`">
                 <div class="content">
                   <div class="header">
