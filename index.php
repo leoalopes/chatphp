@@ -8,6 +8,7 @@ function baseUrl() {
     return 'http://localhost/chatphp';
 }
 
+date_default_timezone_set('America/Sao_Paulo');
 session_start();
 $router = new Router();
 $router->route();

@@ -52,6 +52,25 @@ class User {
         mysqli_close($conn);
         return $response;
     }
+
+    public function editProfile($data) {
+        $conn = $this->connect();
+        if(isset($data['name']) && $data['name'] != '' && $data['name'] != $_SESSION['logged']['name']) {
+            $verify = $conn->query("select * from person where name = '".$data['name']."';");
+            if($verify->num_rows > 0) {
+                header(ERROR);
+                $response = ['error'=>'Nickname already registered.'];
+                return $response;
+            }
+        }
+        $sql = "update person".(isset($data['name']) && $data['name'] != '' ? " set name = '".$data['name']."'" : "").(isset($data['image']) && $data['image'] != '' ? (isset($data['name']) && $data['name'] != '' ? ", image = '".$data['image']."'" : " set image = '".$data['image']."'") : "")." where id = ".$_SESSION['logged']['id'].";";
+        $conn->query($sql);
+        $user = $conn->query("select id, name, image from person where id = '".$_SESSION['logged']['id']."';");
+        $_SESSION['logged'] = $user->fetch_assoc();
+        header(SUCCESS);
+        mysqli_close($conn);
+        return [];
+    }
 }
 
 ?>

@@ -89,6 +89,86 @@ class Router {
         $controller = new Logged();
         $controller->panel();
     }
+
+    private function message() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
+        if(!isset($_SESSION['logged']['receiver']))
+            header('location: '.baseUrl().'/panel');
+        $controller = new Logged();
+        $controller->message();
+    }
+
+    private function profile() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
+        $controller = new Logged();
+        $controller->profile();
+    }
+
+    private function editProfile() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
+        if($_SERVER['REQUEST_METHOD'] != 'POST')
+            header('location: '.baseUrl().'/profile');
+        else {
+            $controller = new Account();
+            $controller->editProfile();
+        }
+    }
+ 
+    private function logout() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
+        $controller = new Account();
+        $controller->logout();
+    }
+
+    private function sendMessage() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
+        if(!isset($_SESSION['logged']['receiver']))
+            header('location: '.baseUrl().'/panel');
+        $controller = new Logged();
+        $controller->sendMessage();
+    }
+
+    private function refreshReceiver() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
+        if(!isset($_SESSION['logged']['receiver']))
+            header('location: '.baseUrl().'/panel');
+        $controller = new Logged();
+        $controller->getReceiverMessages();
+    }
+
+    private function refreshMessages() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
+        $controller = new Logged();
+        $controller->getMessages();
+    }
+
+    private function stayOnline() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
+        $controller = new Logged();
+        $controller->stayOnline();
+    }
+
+    private function refreshOnline() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
+        $controller = new Logged();
+        $controller->getOnline();
+    }
+
+    private function setReceiver() {
+        if(!isset($_SESSION['logged']))
+            header('location: '.baseUrl().'/login');
+        $controller = new Logged();
+        $controller->setReceiver();
+    }
     
     private function notFound() {
         $controller = new Generalpages();

@@ -28,98 +28,207 @@
     margin: 5em 0em 0em;
     padding: 5em 0em;
   }
+  .menu-item {
+    font-size: 18px;
+  }
+  .section-header {
+    text-align: center;
+    font-size: 20px !important;
+  }
+  .main-title {
+    text-align: center;
+  }
+  .main-divider {
+    margin-bottom: 50px !important;
+  }
+  .not-found {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .avatar.image {
+    margin-right: 5% !important;
+  }
+  .message-container {
+    cursor: pointer;
+  }
   </style>
   <script src="assets/jquery/jquery.min.js"></script>
   <script src="assets/semantic/semantic.min.js"></script>
 </head>
 <body>
-
-  <div class="ui fixed inverted menu">
+  <div class="ui inverted menu">
     <div class="ui container">
-      <a href="#" class="header item">
-        <img class="logo" src="assets/images/logo.png">
-        Project Name
+      <a href="<?php echo baseUrl().'/panel'; ?>" class="header item menu-item">
+        PHP Chat
       </a>
-      <a href="#" class="item">Home</a>
-      <div class="ui simple dropdown item">
-        Dropdown <i class="dropdown icon"></i>
-        <div class="menu">
-          <a class="item" href="#">Link Item</a>
-          <a class="item" href="#">Link Item</a>
-          <div class="divider"></div>
-          <div class="header">Header Item</div>
-          <div class="item">
-            <i class="dropdown icon"></i>
-            Sub Menu
-            <div class="menu">
-              <a class="item" href="#">Link Item</a>
-              <a class="item" href="#">Link Item</a>
-            </div>
-          </div>
-          <a class="item" href="#">Link Item</a>
+      <div class="right menu">
+        <a href="<?php echo baseUrl().'/profile'; ?>"><div class="item menu-item">
+          <?php echo $_SESSION['logged']['name'] ?>
+        </div></a>
+        <div class="item menu-item">
+          <a href="<?php echo baseUrl().'/logout'; ?>"><i class="sign-out icon"></i></a>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="ui main text container">
-    <h1 class="ui header">Semantic UI Fixed Template</h1>
-    <p>This is a basic fixed menu template using fixed size containers.</p>
-    <p>A text container is used for the main container, which is useful for single column layouts</p>
-    <img class="wireframe" src="assets/images/wireframe/media-paragraph.png">
-    <img class="wireframe" src="assets/images/wireframe/paragraph.png">
-    <img class="wireframe" src="assets/images/wireframe/paragraph.png">
-    <img class="wireframe" src="assets/images/wireframe/paragraph.png">
-    <img class="wireframe" src="assets/images/wireframe/paragraph.png">
-    <img class="wireframe" src="assets/images/wireframe/paragraph.png">
-    <img class="wireframe" src="assets/images/wireframe/paragraph.png">
+  <div class="ui main container">
+    <div class="main-title">
+      <h2 class="ui red header main-title">This is your main panel</h2>
+      <p>Here you can access your groups and individual messages, as well as start a new conversation.</p>
+    </div>
+    <h4 class="ui horizontal divider header main-divider">
+      &nbsp;&nbsp;&nbsp;&nbsp;<i class="check red icon"></i>
+    </h4>
+    <div class="ui stackable three column grid">
+      <div class="column">
+        <div class="ui container segment">
+          <h2 class="ui green header section-header">Messages</h2>
+          <h4 class="ui horizontal divider header">
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="green comments icon"></i>
+          </h4>
+          <div id="messages">
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui container segment">
+          <h2 class="ui blue header section-header">Online Users</h2>
+            <h4 class="ui horizontal divider header">
+            &nbsp;&nbsp;&nbsp;&nbsp;<i class="blue user icon" style="color: #21ba45"></i>
+            </h4>
+            <div id="online-users">
+            </div>
+          </div>
+        </div>
+      <div class="column">
+        <div class="ui container segment">
+          <h2 class="ui orange header section-header">Groups</h2>
+          <h4 class="ui horizontal divider header">
+          &nbsp;&nbsp;&nbsp;&nbsp;<i class="orange users icon" style="color: #21ba45"></i>
+          </h4>
+          <div id="groups">
+          </div>
+          <script>
+            var messages;
+            if(!messages) {
+              document.write('<div class="not-found">No groups yet.</div>');
+            } else {
+
+            }
+          </script>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="ui inverted vertical footer segment">
     <div class="ui center aligned container">
-      <div class="ui stackable inverted divided grid">
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 1</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 2</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Group 3</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Link One</a>
-            <a href="#" class="item">Link Two</a>
-            <a href="#" class="item">Link Three</a>
-            <a href="#" class="item">Link Four</a>
-          </div>
-        </div>
-        <div class="seven wide column">
-          <h4 class="ui inverted header">Footer Header</h4>
-          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-        </div>
-      </div>
-      <div class="ui inverted section divider"></div>
-      <img src="assets/images/logo.png" class="ui centered mini image">
-      <div class="ui horizontal inverted small divided link list">
-        <a class="item" href="#">Site Map</a>
-        <a class="item" href="#">Contact Us</a>
-        <a class="item" href="#">Terms and Conditions</a>
-        <a class="item" href="#">Privacy Policy</a>
-      </div>
+      Made by Leonardo Lopes | 2018
     </div>
   </div>
 </body>
+<script>
+  function stayOnline() {
+    $.ajax({
+      url: '<?php echo baseUrl() ?>/stayOnline',
+      method: 'GET',
+      success: function(response) {},
+      error: function(error) {
+        console.log(JSON.parse(error.responseText).error);
+      }
+    })
+  }
 
+  function refreshMessages() {
+    $.ajax({
+      url: '<?php echo baseUrl() ?>/refreshMessages',
+      method: 'GET',
+      success: function(response) {
+        var messages = JSON.parse(response);
+        var newHtml = '';
+        if(!messages || messages.length == 0) {
+          newHtml = '<div class="not-found">No messages yet.</div>';
+        } else {
+          messages.map(function(message) {
+            newHtml += `
+              <div class="ui icon message message-container" onclick="setReceiver(`+message.id+`)">
+                <img class="ui avatar image" src="`+(message.image && message.image != "" ? message.image : "https://i.imgur.com/jNNT4LE.jpg")+`">
+                <div class="content">
+                  <div class="header">
+                    `+message.name+`
+                  </div>
+                  <p>`+(message.message.received ? '' : '<i class="reply icon"></i>  ')+(message.message.text.length > 20 ? message.message.text.substr(0, 20) + '...' : message.message.text)+`</p>
+                </div>
+              </div>
+            `;
+          });
+        }
+        $("#messages").html(newHtml);
+      },
+      error: function(error) {
+        console.log(JSON.parse(error.responseText).error);
+      }
+    })
+  }
+
+  function refreshOnline() {
+    $.ajax({
+      url: '<?php echo baseUrl() ?>/refreshOnline',
+      method: 'GET',
+      success: function(response) {
+        var online = JSON.parse(response);
+        var newHtml = '';
+        if(!online || online.length == 0) {
+          newHtml = '<div class="not-found">No users online.</div>';
+        } else {
+          online.map(function(person) {
+            newHtml += `
+              <div class="ui icon message">
+                <img class="ui avatar image" src="`+(person.image && person.image != "" ? person.image : "https://i.imgur.com/jNNT4LE.jpg")+`">
+                <div class="content">
+                  <div class="header">
+                    `+person.name+`
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+        }
+        $("#online-users").html(newHtml);
+      },
+      error: function(error) {
+        console.log(JSON.parse(error.responseText).error);
+      }
+    })
+  }
+
+  function setReceiver(id) {
+    $.ajax({
+      url: '<?php echo baseUrl() ?>/setReceiver',
+      method: 'POST',
+      data: {
+        receiver: id
+      },
+      success: function(response) {
+        window.location.href = "<?php echo baseUrl().'/message'; ?>";
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    })
+  }
+
+  $(document).ready(function() {
+    stayOnline();
+    setInterval(stayOnline, 60000);
+    refreshMessages();
+    setInterval(refreshMessages, 5000);
+    refreshOnline();
+    setInterval(refreshOnline, 10000);
+  })
+</script>
 </html>
